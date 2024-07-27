@@ -1,0 +1,66 @@
+name:                projlib
+version:             0.1.0.0
+github:              msp729/proj
+license:             BSD-3-Clause
+author:              Nate Brown
+maintainer:          example@example.com
+copyright:           2024 Nate Brown
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/msp729/proj#readme>
+
+dependencies:
+- base >= 4.11 && < 10
+- directory
+- spoon
+- ansi-terminal
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  xproj:
+    main:                Main.hs
+    source-dirs:         app
+    dependencies:
+    - projlib
+    - optparse-simple
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+tests:
+  proj-test:
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - projlib
+    - hspec
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
